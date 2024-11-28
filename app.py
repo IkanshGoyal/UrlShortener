@@ -25,6 +25,9 @@ def shorten():
         data = {"long_url": long_url}
         response = requests.post(BITLY_API_URL, json=data, headers=headers)
 
+        print(f"Response Status Code: {response.status_code}")
+        print(f"Response Body: {response.text}")
+
         if response.status_code == 200:
             short_url = response.json().get("link")
             return render_template('result.html', short_url=short_url)
